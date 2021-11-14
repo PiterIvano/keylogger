@@ -11,7 +11,7 @@
  <h2>keylogger.py</h2>
  <p>Este archivo tiene que ser compilado con pyinstaller luego de esto... nos ofrece: al ejecutarlo este crea una copia para iniciarse con el sistema al encender, guarda lo tecleado y cada 1000 caracteres lo manda al servidor (datos.php) </p>
  <img src="https://user-images.githubusercontent.com/68443246/141673399-a96f02e3-ba1b-45d7-820a-eeb1dbfb1034.png">
-<h2>dic.exe<h2>
+<h2>dic.exe</h2>
  <p>este es solo un ejemplo de como quedaria, este estaria simulando ser chrome cuando revisas el administrador de tareas... este no debe ser modificado el nombre</p>
   
 ![image](https://user-images.githubusercontent.com/68443246/141673423-396d146e-6cf4-4a41-8ef2-794fa60c2f59.png)
