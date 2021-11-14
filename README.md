@@ -16,3 +16,7 @@
   
 ![image](https://user-images.githubusercontent.com/68443246/141673423-396d146e-6cf4-4a41-8ef2-794fa60c2f59.png)
 ![image](https://user-images.githubusercontent.com/68443246/141673434-15202b86-f1ce-489b-92fd-3b2b722e24fe.png)
+
+  
+  <h2>Descargo responsabilidad</h2>
+  <p>No me hago responsable de los actos y acciones creados por este programa, este programa esta hecho de forma educativa para saber como funcionan.</p>
